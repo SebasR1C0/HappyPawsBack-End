@@ -12,4 +12,5 @@ public interface IAlbergueService {
     public List<Albergue> findalbergue(String albergueName);
     public List<Albergue> AbiertoAhora();
     public List<String[]> albergueporcantidad();
+    public Albergue listId(int id);
 }

@@ -45,6 +45,7 @@ public class ComentarioController {
     public void eliminar(@PathVariable("id") Integer id){
         comentarioService.delete(id);
     }
+
     @GetMapping("/buscarxnombre")
     @PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<ComentarioDTO> recuperar(@RequestParam("name") String name){
@@ -52,5 +53,13 @@ public class ComentarioController {
             ModelMapper m = new ModelMapper();
             return m.map(x,ComentarioDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/{id}")
+    public ComentarioDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        ComentarioDTO dto=m.map(comentarioService.listId(id),ComentarioDTO.class);
+        return dto;
     }
 }

@@ -79,4 +79,12 @@ public class NotificacionController {
         }
         return ListDTO;
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    public NotificacionDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        NotificacionDTO dto=m.map(notificacionService.listId(id),NotificacionDTO.class);
+        return dto;
+    }
 }

@@ -48,4 +48,9 @@ public class AlbergueServiceImplement implements IAlbergueService {
     public List<String[]> albergueporcantidad() {
         return albergueRepository.albergueporcantidad();
     }
+
+    @Override
+    public Albergue listId(int id) {
+        return albergueRepository.findById(id).orElse(new Albergue());
+    }
 }

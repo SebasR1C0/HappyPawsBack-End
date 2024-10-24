@@ -59,4 +59,9 @@ public class UsersServiceImplement implements IUsersService {
         return user.getId();
     }
 
+    @Override
+    public Users listId(long id) {
+        return uR.findById(id).orElse(new Users());
+    }
+
 }

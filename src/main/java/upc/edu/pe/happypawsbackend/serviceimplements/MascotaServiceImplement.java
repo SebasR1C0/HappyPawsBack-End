@@ -58,4 +58,9 @@ public class MascotaServiceImplement implements IMascotaService {
     public List<String[]> mascotaxadopcion() {
         return mascotaRepository.mascotaxadopcion();
     }
+
+    @Override
+    public Mascota listId(int id) {
+        return mascotaRepository.findById(id).orElse(new Mascota());
+    }
 }

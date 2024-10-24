@@ -33,4 +33,9 @@ public class ComprobanteServiceImplement implements IComprobanteService {
     public void delete(int comprobanteId) {
         comprobanteRepository.deleteById(comprobanteId);
     }
+
+    @Override
+    public Comprobante listId(int id) {
+        return comprobanteRepository.findById(id).orElse(new Comprobante());
+    }
 }

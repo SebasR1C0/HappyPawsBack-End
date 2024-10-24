@@ -38,4 +38,9 @@ public class ComentarioServiceImplement implements IComentarioService {
     public List<Comentario> findname(String name) {
         return comentarioRepository.findalbergue(name);
     }
+
+    @Override
+    public Comentario listId(int id) {
+        return comentarioRepository.findById(id).orElse(new Comentario());
+    }
 }

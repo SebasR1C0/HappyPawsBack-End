@@ -13,4 +13,5 @@ public interface INotificacionService {
     public List<Notificacion> findemisor(int id);
     public List<Notificacion> findreceptor(int id);
     public List<String[]> notifiacionxfecha(LocalDate fecha);
+    public Notificacion listId(int id);
 }

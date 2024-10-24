@@ -70,4 +70,10 @@ public class CitaController {
             return m.map(x,CitaDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/{id}")
+    public CitaDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        CitaDTO dto=m.map(citaService.listId(id),CitaDTO.class);
+        return dto;
+    }
 }

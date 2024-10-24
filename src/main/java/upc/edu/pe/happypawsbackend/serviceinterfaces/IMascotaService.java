@@ -14,4 +14,5 @@ public interface IMascotaService {
     public List<Mascota> mascotassexo(String sexo);
     public List<String[]> mascotaxraza();
     public List<String[]> mascotaxadopcion();
+    public Mascota listId(int id);
 }

@@ -12,4 +12,5 @@ public interface IDonacionService {
     public List<Donacion> findusuario(int id);
     public List<Donacion> findmontos();
     public List<String[]> donacionesxnombre();
+    public Donacion listId(int id);
 }
