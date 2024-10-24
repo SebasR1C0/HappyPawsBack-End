@@ -20,7 +20,6 @@ public class AlbergueController {
     private IAlbergueService albergueService;
 
     @GetMapping
-
     @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<AlbergueDTO> listar() {
         return albergueService.list().stream().map(x -> {
@@ -78,5 +77,13 @@ public class AlbergueController {
             ModelMapper m = new ModelMapper();
             return m.map(x,AlbergueDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @PreAuthorize("hasAuthority('ALBERGUE') OR hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/{id}")
+    public AlbergueDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        AlbergueDTO dto=m.map(albergueService.listId(id),AlbergueDTO.class);
+        return dto;
     }
 }

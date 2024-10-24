@@ -36,6 +36,7 @@ public class MascotaController {
         Mascota mascota = m.map(mascotaDTO, Mascota.class);
         mascotaService.insert(mascota);
     }
+
     @PutMapping
     @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody MascotaDTO mascotaDTO) {
@@ -43,11 +44,13 @@ public class MascotaController {
         Mascota mascota = m.map(mascotaDTO, Mascota.class);
         mascotaService.update(mascota);
     }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         mascotaService.delete(id);
     }
+
     @GetMapping("/buscarxestado")
     @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaDTO> noadoptados(@RequestParam("estado") boolean estado){
@@ -100,5 +103,13 @@ public class MascotaController {
             ListDTO.add(dto);
         }
         return ListDTO;
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
+    public MascotaDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        MascotaDTO dto=m.map(mascotaService.listId(id),MascotaDTO.class);
+        return dto;
     }
 }

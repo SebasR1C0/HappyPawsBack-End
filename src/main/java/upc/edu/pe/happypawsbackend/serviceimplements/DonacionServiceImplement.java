@@ -48,4 +48,9 @@ public class DonacionServiceImplement implements IDonacionService {
     public List<String[]> donacionesxnombre() {
         return donacionRepository.donacionesxnombre();
     }
+
+    @Override
+    public Donacion listId(int id) {
+        return donacionRepository.findById(id).orElse(new Donacion());
+    }
 }

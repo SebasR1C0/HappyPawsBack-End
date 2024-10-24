@@ -78,4 +78,12 @@ public class DonacionController {
         }
         return ListDTO;
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public DonacionDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        DonacionDTO dto=m.map(donacionService.listId(id),DonacionDTO.class);
+        return dto;
+    }
 }

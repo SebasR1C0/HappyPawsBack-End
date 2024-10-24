@@ -13,4 +13,5 @@ public interface ICitaService {
     public List<Cita> findusuario(int id);
     public List<Cita> findalbergue(int id);
     public List<Cita> findpendiente();
+    public Cita listId(int id);
 }

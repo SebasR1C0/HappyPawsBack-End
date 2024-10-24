@@ -53,4 +53,9 @@ public class CitaServiceImplement implements ICitaService {
     public List<Cita> findpendiente() {
         return citaRepository.findpendiente();
     }
+
+    @Override
+    public Cita listId(int id) {
+        return citaRepository.findById(id).orElse(new Cita());
+    }
 }

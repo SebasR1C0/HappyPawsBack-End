@@ -49,4 +49,9 @@ public class NotificacionServiceImplement implements INotificacionService {
     public List<String[]> notifiacionxfecha(LocalDate fecha) {
         return notificacionRepository.notifiacionxfecha(fecha);
     }
+
+    @Override
+    public Notificacion listId(int id) {
+        return notificacionRepository.findById(id).orElse(new Notificacion());
+    }
 }

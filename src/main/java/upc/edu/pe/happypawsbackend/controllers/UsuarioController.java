@@ -67,4 +67,12 @@ public class UsuarioController {
             return m.map(x,UsersDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public UsersDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        UsersDTO dto=m.map(usersService.listId(id),UsersDTO.class);
+        return dto;
+    }
 }

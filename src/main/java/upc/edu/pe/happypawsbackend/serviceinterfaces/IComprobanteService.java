@@ -9,4 +9,5 @@ public interface IComprobanteService {
     public void insert(Comprobante comprobante);
     public void update(Comprobante comprobante);
     public void delete(int comprobanteId);
+    public Comprobante listId(int id);
 }

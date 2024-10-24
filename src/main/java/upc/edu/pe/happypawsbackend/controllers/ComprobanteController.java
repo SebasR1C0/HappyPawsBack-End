@@ -46,4 +46,12 @@ public class ComprobanteController {
     public void eliminar(@PathVariable("id") Integer id){
         comprobanteService.delete(id);
     }
+
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/{id}")
+    public ComprobanteDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        ComprobanteDTO dto=m.map(comprobanteService.listId(id),ComprobanteDTO.class);
+        return dto;
+    }
 }

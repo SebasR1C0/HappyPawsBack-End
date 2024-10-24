@@ -14,5 +14,5 @@ public interface IUsersService {
     public List<Users> findactivos();
     public Users findOneByUsername(String user);
     Long  findByUsername(String username);
-
+    public Users listId(long id);
 }
