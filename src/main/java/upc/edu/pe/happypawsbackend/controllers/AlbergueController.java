@@ -20,7 +20,7 @@ public class AlbergueController {
     private IAlbergueService albergueService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<AlbergueDTO> listar() {
         return albergueService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -29,26 +29,28 @@ public class AlbergueController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ALBERGUE')")
+    //@PreAuthorize("hasAuthority('ALBERGUE')")
     public void insertar(@RequestBody AlbergueDTO albergueDTO) {
         ModelMapper m = new ModelMapper();
         Albergue albergue = m.map(albergueDTO, Albergue.class);
         albergueService.insert(albergue);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ALBERGUE')")
+    //@PreAuthorize("hasAuthority('ALBERGUE')")
     public void modificar(@RequestBody AlbergueDTO albergueDTO) {
         ModelMapper m = new ModelMapper();
         Albergue albergue = m.map(albergueDTO, Albergue.class);
         albergueService.update(albergue);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         albergueService.delete(id);
     }
+
+    
     @GetMapping("/buscarxnombre")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<AlbergueDTO> buscarpornombre(@RequestParam("name") String name){
         return albergueService.findalbergue(name).stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -57,7 +59,7 @@ public class AlbergueController {
     }
 
     @GetMapping("/alberguexcantidad")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<AlbergueByCountDTO> albergueporcantidad(){
         List<String[]> lista = albergueService.albergueporcantidad();
         List<AlbergueByCountDTO> ListDTO = new ArrayList<>();
@@ -71,7 +73,7 @@ public class AlbergueController {
     }
 
     @GetMapping("/abiertoahora")
-    @PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<AlbergueDTO> abiertoahora(){
         return albergueService.AbiertoAhora().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -80,7 +82,7 @@ public class AlbergueController {
     }
 
     @PreAuthorize("hasAuthority('ALBERGUE') OR hasAuthority('ADMINISTRADOR')")
-    @GetMapping("/{id}")
+    //@GetMapping("/{id}")
     public AlbergueDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         AlbergueDTO dto=m.map(albergueService.listId(id),AlbergueDTO.class);

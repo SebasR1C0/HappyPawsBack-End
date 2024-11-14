@@ -21,7 +21,7 @@ public class RolController {
     private IRoleService roleService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<RoleDTO> listar() {
         return roleService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,27 +30,35 @@ public class RolController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody RoleDTO roledto) {
         ModelMapper m = new ModelMapper();
         Role role = m.map(roledto, Role.class);
         roleService.insert(role);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody RoleDTO roledto) {
         ModelMapper m = new ModelMapper();
         Role role = m.map(roledto, Role.class);
         roleService.update(role);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Long id){
         roleService.delete(id);
     }
 
+    @GetMapping("/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public RoleDTO listarId(@PathVariable("id") Long id){
+        ModelMapper m=new ModelMapper();
+        RoleDTO dto=m.map(roleService.listId(id),RoleDTO.class);
+        return dto;
+    }
+
     @GetMapping("/rolxuser")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<RolByUserDTO> rolporuser(){
         List<String[]> lista = roleService.countrol();
         List<RolByUserDTO> ListDTO = new ArrayList<>();

@@ -20,7 +20,7 @@ public class DonacionController {
     private IDonacionService donacionService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonacionDTO> listar() {
         return donacionService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -29,26 +29,26 @@ public class DonacionController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody DonacionDTO donacionDTO) {
         ModelMapper m = new ModelMapper();
         Donacion donacion = m.map(donacionDTO, Donacion.class);
         donacionService.insert(donacion);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody DonacionDTO donacionDTO) {
         ModelMapper m = new ModelMapper();
         Donacion donacion = m.map(donacionDTO, Donacion.class);
         donacionService.update(donacion);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         donacionService.delete(id);
     }
     @GetMapping("/buscarxusuario")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonacionDTO> buscarporusuario(@RequestParam("id") int id){
         return donacionService.findusuario(id).stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -56,7 +56,7 @@ public class DonacionController {
         }).collect(Collectors.toList());
     }
     @GetMapping("/buscarxmonto")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonacionDTO> buscarpormonto(){
         return donacionService.findmontos().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -65,7 +65,7 @@ public class DonacionController {
     }
 
     @GetMapping("/donacionxnombre")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonacionByNameDTO> donacionpornombre(){
         List<String[]> lista = donacionService.donacionesxnombre();
         List<DonacionByNameDTO> ListDTO = new ArrayList<>();
@@ -80,7 +80,7 @@ public class DonacionController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public DonacionDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         DonacionDTO dto=m.map(donacionService.listId(id),DonacionDTO.class);

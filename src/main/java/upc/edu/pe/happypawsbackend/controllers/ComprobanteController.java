@@ -18,7 +18,7 @@ public class ComprobanteController {
     private IComprobanteService comprobanteService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ComprobanteDTO>
     listar() {
         return comprobanteService.list().stream().map(x -> {
@@ -28,27 +28,27 @@ public class ComprobanteController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody ComprobanteDTO comprobanteDTO) {
         ModelMapper m = new ModelMapper();
         Comprobante comprobante = m.map(comprobanteDTO, Comprobante.class);
         comprobanteService.insert(comprobante);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody ComprobanteDTO comprobanteDTO) {
         ModelMapper m = new ModelMapper();
         Comprobante comprobante = m.map(comprobanteDTO, Comprobante.class);
         comprobanteService.update(comprobante);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         comprobanteService.delete(id);
     }
 
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping("/{id}")
+    //@GetMapping("/{id}")
     public ComprobanteDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         ComprobanteDTO dto=m.map(comprobanteService.listId(id),ComprobanteDTO.class);

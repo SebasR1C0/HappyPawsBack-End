@@ -21,7 +21,7 @@ public class MascotaController {
     private IMascotaService mascotaService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    //PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaDTO> listar() {
         return mascotaService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class MascotaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody MascotaDTO mascotaDTO) {
         ModelMapper m = new ModelMapper();
         Mascota mascota = m.map(mascotaDTO, Mascota.class);
@@ -38,7 +38,7 @@ public class MascotaController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody MascotaDTO mascotaDTO) {
         ModelMapper m = new ModelMapper();
         Mascota mascota = m.map(mascotaDTO, Mascota.class);
@@ -46,13 +46,13 @@ public class MascotaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         mascotaService.delete(id);
     }
 
     @GetMapping("/buscarxestado")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaDTO> noadoptados(@RequestParam("estado") boolean estado){
         return mascotaService.mascotasestado(estado).stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -60,7 +60,7 @@ public class MascotaController {
         }).collect(Collectors.toList());
     }
     @GetMapping("/buscarxraza")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaDTO> buscarporraza(@RequestParam("raza") String raza){
         return mascotaService.mascotasrazas(raza).stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -68,7 +68,7 @@ public class MascotaController {
         }).collect(Collectors.toList());
     }
     @GetMapping("/buscarxsexo")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaDTO> buscarporsexo(@RequestParam("sexo") String sexo){
         return mascotaService.mascotassexo(sexo).stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -77,7 +77,7 @@ public class MascotaController {
     }
 
     @GetMapping("/mascotaxraza")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaByRazaDTO> mascotaporraza(){
         List<String[]> lista = mascotaService.mascotaxraza();
         List<MascotaByRazaDTO> ListDTO = new ArrayList<>();
@@ -92,7 +92,7 @@ public class MascotaController {
     }
 
     @GetMapping("/mascotaxadopcion")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
     public List<MascotaByAdopcionDTO> mascotaporadopcion(){
         List<String[]> lista = mascotaService.mascotaxadopcion();
         List<MascotaByAdopcionDTO> ListDTO = new ArrayList<>();
@@ -106,7 +106,7 @@ public class MascotaController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('ADMINISTRADOR')")
     public MascotaDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         MascotaDTO dto=m.map(mascotaService.listId(id),MascotaDTO.class);

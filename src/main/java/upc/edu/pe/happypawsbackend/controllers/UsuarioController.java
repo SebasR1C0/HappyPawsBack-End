@@ -21,7 +21,7 @@ public class UsuarioController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<UsersDTO> listar() {
         return usersService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public void registrar(@RequestBody UsersDTO usuariodto) {
         ModelMapper m = new ModelMapper();
         Users u = m.map(usuariodto, Users.class);
@@ -39,20 +39,20 @@ public class UsuarioController {
         usersService.insert(u);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody UsersDTO usuariodto) {
         ModelMapper m = new ModelMapper();
         Users user = m.map(usuariodto, Users.class);
         usersService.update(user);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Long id){
         usersService.delete(id);
     }
 
     @GetMapping("/recuperar")
-    @PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') OR hasAuthority('ADMINISTRADOR')")
     public List<UsersDTO> recuperar(@RequestParam("email") String email){
         return usersService.searchEmail(email).stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -60,7 +60,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
     @GetMapping("/activos")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<UsersDTO> activos(){
         return usersService.findactivos().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -69,7 +69,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public UsersDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         UsersDTO dto=m.map(usersService.listId(id),UsersDTO.class);
