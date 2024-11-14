@@ -81,8 +81,9 @@ public class AlbergueController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ALBERGUE') OR hasAuthority('ADMINISTRADOR')")
-    //@GetMapping("/{id}")
+
+    @GetMapping("/{id}")
+    //@PreAuthorize("hasAuthority('ALBERGUE') OR hasAuthority('ADMINISTRADOR')")
     public AlbergueDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         AlbergueDTO dto=m.map(albergueService.listId(id),AlbergueDTO.class);

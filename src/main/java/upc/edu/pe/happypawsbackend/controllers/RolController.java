@@ -43,6 +43,7 @@ public class RolController {
         Role role = m.map(roledto, Role.class);
         roleService.update(role);
     }
+
     @DeleteMapping("/{id}")
     //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Long id){
