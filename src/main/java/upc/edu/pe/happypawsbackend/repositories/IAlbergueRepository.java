@@ -21,7 +21,7 @@ public interface IAlbergueRepository extends JpaRepository<Albergue, Integer> {
             " FROM Albergue a JOIN Mascota m \n" +
             " ON m.id_albergue = a.id_albergue\n" +
             " GROUP BY a.nombre_albergue, a.capacidad_maxima\n" +
-            " HAVING COUNT(m.id_mascota) >= a.capacidad_maxima;", nativeQuery = true)
+            " HAVING COUNT(m.id_mascota) <= a.capacidad_maxima;", nativeQuery = true)
     public List<String[]> albergueporcantidad();
 
 

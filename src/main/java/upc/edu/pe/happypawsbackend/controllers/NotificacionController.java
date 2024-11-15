@@ -65,9 +65,9 @@ public class NotificacionController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/notificacionxfecha")
+    @GetMapping("/notificacionxfecha/{fecha}")
     //@PreAuthorize("hasAuthority('ALBERGUE') or hasAuthority('CLIENTE') or hasAuthority('ADMINISTRADOR')")
-    public List<NotificacionByDateDTO> notificacionporfecha(@RequestParam("fecha") LocalDate fecha){
+    public List<NotificacionByDateDTO> notificacionporfecha(@PathVariable("fecha") LocalDate fecha){
         List<String[]> lista = notificacionService.notifiacionxfecha(fecha);
         List<NotificacionByDateDTO> ListDTO = new ArrayList<>();
         for (String[] columna:lista) {
