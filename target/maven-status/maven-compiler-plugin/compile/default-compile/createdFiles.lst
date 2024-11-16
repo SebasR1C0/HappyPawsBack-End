@@ -7,6 +7,7 @@ upc\edu\pe\happypawsbackend\controllers\MascotaController.class
 upc\edu\pe\happypawsbackend\repositories\IComentarioRepository.class
 upc\edu\pe\happypawsbackend\securities\JwtRequest.class
 upc\edu\pe\happypawsbackend\serviceimplements\ComentarioServiceImplement.class
+upc\edu\pe\happypawsbackend\util\CORS.class
 upc\edu\pe\happypawsbackend\controllers\UsuarioController.class
 upc\edu\pe\happypawsbackend\serviceinterfaces\IComprobanteService.class
 upc\edu\pe\happypawsbackend\serviceinterfaces\IDonacionService.class
